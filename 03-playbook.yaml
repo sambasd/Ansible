@@ -1,13 +1,13 @@
----
-- name: Install Apache on frontend servers
-  hosts: frontend
-  become: yes
-  tasks:
-    - name: Install Apache package
-      ansible.builtin.package:
-        name:
-          - httpd        # Apache web server
-            - mariadb-server  # Database server
+ ---
+  - name: Install Apache on frontend servers
+    hosts: frontend
+    become: yes
+    tasks:
+      - name: Install multiple packages
+        ansible.builtin.package:
+          name:
+            - httpd          # Apache web server
+            - mariadb-server # Database server
             - php
             - git
             - wget
@@ -16,4 +16,4 @@
             - vim
             - net-tools
             - telnet
-        state: present
+          state: present
