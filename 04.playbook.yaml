@@ -1,0 +1,16 @@
+---
+- name: Ensure services are running
+  hosts: frontend
+  become: yes
+  tasks:
+    - name: Ensure Apache is running
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+
+    - name: Ensure MariaDB is running
+      ansible.builtin.service:
+        name: mariadb
+        state: started
+        enabled: true
