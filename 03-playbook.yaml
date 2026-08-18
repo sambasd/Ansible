@@ -5,5 +5,15 @@
   tasks:
     - name: Install Apache package
       ansible.builtin.package:
-        name: nginx
+        name:
+          - httpd        # Apache web server
+            - mariadb-server  # Database server
+            - php
+            - git
+            - wget
+            - curl
+            - unzip
+            - vim
+            - net-tools
+            - telnet
         state: present
