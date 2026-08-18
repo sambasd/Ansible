@@ -1,9 +1,8 @@
 ---
-  - name: install the nginx package
-    hosts: frontend
-    tasks:
-      - name: install packages
-       ansible.builtin.package:
-          name: nginx
-          state: present
-
+- name: Install Apache on frontend servers
+  hosts: frontend
+  tasks:
+    - name: Install Apache package
+      ansible.builtin.package:
+        name: nginx
+        state: present
