@@ -1,6 +1,7 @@
-- name:hello world
+---
+- name: Hello World Playbook
   hosts: frontend
   tasks:
-    - name:print Hello world
+    - name: Print Hello World
       ansible.builtin.debug:
-         msg: "Hello World!"
+        msg: "Hello World"
