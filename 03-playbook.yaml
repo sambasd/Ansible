@@ -1,6 +1,7 @@
 ---
 - name: Install Apache on frontend servers
   hosts: frontend
+  become: yes
   tasks:
     - name: Install Apache package
       ansible.builtin.package:
