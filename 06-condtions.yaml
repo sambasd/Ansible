@@ -1,7 +1,9 @@
 ---
-- name: gathering facts
+- name: Demo on conditions
   hosts: frontend
   tasks:
-    - name: facts
+    - name: Show hostname
       ansible.builtin.debug:
-        msg:"{{ ansible-facts }}"
+        msg: "Hostname is {{ ansible_hostname }}"
+
+
