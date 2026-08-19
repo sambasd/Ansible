@@ -1,11 +1,11 @@
 ---
-- name: demo for loops
+- name: Demo for loops
   hosts: frontend
   tasks:
-    - name: print the names
+    - name: Print the names
       ansible.builtin.debug:
-        msg: "hello {{ item }}"
-        loop:
-          - sam
-          - siva
-          - ram
+        msg: "Name is {{ item }}"
+      loop:
+        - Samba
+        - Siva
+        - Rao
