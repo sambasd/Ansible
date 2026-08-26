@@ -11,4 +11,4 @@
         uid: "{{ item.uid }}"
         shell: "{{ item.shell }}"
         state: present
-     loop: "{{ users }}"
+      loop: "{{ users }}"
