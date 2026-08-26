@@ -1,0 +1,13 @@
+- name: Bulk user creation
+  hosts: frontend
+  become: yes
+  vars_files:
+    - vars/users.yaml
+  tasks:
+    - name: Create users
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        uid: "{{ item.uid }}"
+        shell: "{{ item.shell }}"
+        state: present
+      loop: "{{ users }}"
