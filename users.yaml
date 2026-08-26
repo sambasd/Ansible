@@ -2,13 +2,17 @@ users:
   - name: appuser1
     uid: 1101
     shell: /bin/bash
-    groups: developers
+    groups: "developers,sudo"
+    password: "{{ 'DevOps321' | password_hash('sha512') }}"
+
   - name: appuser2
     uid: 1102
     shell: /bin/bash
-    groups: testers
+    groups: "testers,qa"
+    password: "{{ 'TestPass321' | password_hash('sha512') }}"
+
   - name: appuser3
     uid: 1103
     shell: /bin/bash
-    groups: admins
-
+    groups: "admins,security"
+    password: "{{ 'AdminPass321' | password_hash('sha512') }}"
