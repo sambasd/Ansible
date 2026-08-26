@@ -1,3 +1,4 @@
+---
 - name: Bulk user creation
   hosts: frontend
   become: yes
