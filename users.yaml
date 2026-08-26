@@ -1,0 +1,14 @@
+users:
+  - name: appuser1
+    uid: 1101
+    shell: /bin/bash
+    groups: developers
+  - name: appuser2
+    uid: 1102
+    shell: /bin/bash
+    groups: testers
+  - name: appuser3
+    uid: 1103
+    shell: /bin/bash
+    groups: admins
+
