@@ -25,11 +25,22 @@
       ansible.builtin.command: df -h
       register: disk_output
 
-    - name: Display pre-check information
+    - name: Display hostname
       ansible.builtin.debug:
-        msg:
-          - "Hostname: {{ hostname_output.stdout }}"
-          - "Kernel: {{ kernel_output.stdout }}"
-          - "Uptime: {{ uptime_output.stdout }}"
-          - "Disk Space:"
-          - "{{ disk_output.stdout }}"
+        msg: "{{ hostname_output.stdout }}"
+
+    - name: Display OS
+      ansible.builtin.debug:
+        msg: "{{ os_output.stdout }}"
+
+    - name: Display kernel
+      ansible.builtin.debug:
+        msg: "{{ kernel_output.stdout }}"
+
+    - name: Display uptime
+      ansible.builtin.debug:
+        msg: "{{ uptime_output.stdout }}"
+
+    - name: Display disk space
+      ansible.builtin.debug:
+        msg: "{{ disk_output.stdout_lines }}"
