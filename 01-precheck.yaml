@@ -1,0 +1,35 @@
+---
+- name: Pre-check before patching RHEL servers
+  hosts: frontend
+  become: yes
+
+  tasks:
+
+    - name: Check hostname
+      ansible.builtin.command: hostname
+      register: hostname_output
+
+    - name: Check OS version
+      ansible.builtin.command: cat /etc/os-release
+      register: os_output
+
+    - name: Check current kernel
+      ansible.builtin.command: uname -r
+      register: kernel_output
+
+    - name: Check uptime
+      ansible.builtin.command: uptime
+      register: uptime_output
+
+    - name: Check disk space
+      ansible.builtin.command: df -h
+      register: disk_output
+
+    - name: Display pre-check information
+      ansible.builtin.debug:
+        msg:
+          - "Hostname: {{ hostname_output.stdout }}"
+          - "Kernel: {{ kernel_output.stdout }}"
+          - "Uptime: {{ uptime_output.stdout }}"
+          - "Disk Space:"
+          - "{{ disk_output.stdout }}"

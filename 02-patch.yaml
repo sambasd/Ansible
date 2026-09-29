@@ -1,0 +1,19 @@
+---
+- name: Patch RHEL servers
+  hosts: frontend
+  become: yes
+  serial: 1
+
+  tasks:
+
+    - name: Update all installed packages
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest
+        update_only: yes
+      register: patch_result
+
+    - name: Reboot server if packages were updated
+      ansible.builtin.reboot:
+        reboot_timeout: 600
+      when: patch_result.changed
