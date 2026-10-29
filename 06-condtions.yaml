@@ -1,0 +1,10 @@
+---
+- name: Demo on conditions
+  hosts: frontend
+  tasks:
+    - name: Show hostname
+      ansible.builtin.debug:
+        msg: "Hostname is {{ ansible_facts }}"
+    - name: Show OS
+      ansible.builtin.debug:
+        msg: "OS is {{ ansible_distribution }} {{ ansible_distribution_version }}"

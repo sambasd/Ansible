@@ -1,0 +1,18 @@
+---
+- name: Bulk user creation
+  hosts: frontend
+  become: yes
+  vars_files:
+    - vars/users.yaml
+  tasks:
+    - name: Create users with groups, home, and password
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        uid: "{{ item.uid }}"
+        shell: "{{ item.shell }}"
+        groups: "{{ item.groups }}"
+        append: yes
+        create_home: yes
+        password: "{{ item.password }}"
+        state: present
+      loop: "{{ users }}"
