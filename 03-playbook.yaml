@@ -16,4 +16,10 @@
           - vim
           - net-tools
           - telnet
+          - nginx
         state: present
+    - name: Ensure Apache is running
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
