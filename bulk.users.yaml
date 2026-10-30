@@ -1,0 +1,38 @@
+---
+- name: Create groups and users
+  hosts:
+    - frontend
+    - backend
+  become: yes
+
+  vars:
+    users:
+      - { name: user01, group: abc, groups: "devops,wheel" }
+      - { name: user02, group: abc, groups: "devops,wheel" }
+      - { name: user03, group: abc, groups: "devops,wheel" }
+      - { name: user04, group: abc, groups: "devops,wheel" }
+
+  tasks:
+
+    - name: Create primary group
+      group:
+        name: abc
+        state: present
+
+    - name: Create secondary groups
+      group:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - devops
+        - wheel
+
+    - name: Create users
+      user:
+        name: "{{ item.name }}"
+        group: "{{ item.group }}"
+        groups: "{{ item.groups }}"
+        append: yes
+        create_home: yes
+        state: present
+      loop: "{{ users }}"
