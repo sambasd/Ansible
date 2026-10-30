@@ -4,10 +4,24 @@
   become: yes
 
   tasks:
-    - name: Install packages
+
+    - name: Install required packages
       ansible.builtin.package:
-        name: "{{ item.name }}"
-        state: "{{ item state }}"
+        name: "{{ item }}"
+        state: present
       loop:
-        - { name:"mysql", state="absent"}
-        - { name:"nfs_utils", state="present"}
+        - nfs_utils
+        - nginx
+        - php
+
+    - name: Start and enable MariaDB
+      ansible.builtin.service:
+        name: mariadb
+        state: started
+        enabled: yes
+
+    - name: Start and enable Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
