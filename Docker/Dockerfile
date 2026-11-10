@@ -1,6 +1,6 @@
-FROM redhat/ubi10
+FROM redhat/ubi10:latest
 
-RUN dnf install -y nginx nfs-utils curl wget vim \
+RUN dnf install -y nginx curl wget vim \
     && dnf clean all
 
 EXPOSE 80
